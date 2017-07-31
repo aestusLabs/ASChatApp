@@ -84,5 +84,7 @@ struct AllWidgets {
 }
 let allWidgets = AllWidgets()
 
-
+func test() {
+    
+}
 
