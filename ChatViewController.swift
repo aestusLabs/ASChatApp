@@ -19,7 +19,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     var activeButtons: [ChatButton] = [] // this is for disabling buttons once no longer in user
     var currentWidget = allWidgets.askName //listOfWidgets.askChangeDepth  //: Widget? = nil
-    var initialHHS: HHSNames = .home
+    var initialHHS: HHSNames = .onboarding
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
        chatView = createChatView(screenHeight: self.view.frame.height, screenWidth: self.view.frame.width)
         self.view.addSubview(chatView)
         displayOpeningMessages(name: initialHHS)
-
+        
         chatView.textField.delegate = self
     }
     override var prefersStatusBarHidden: Bool {
@@ -47,6 +47,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     func displayOpeningMessages(name: HHSNames) {
         let widgets = chatManager.getCurrentHHSWidgets()
         for widget in widgets {
+            print(widget.tag)
         updateUIFor(widget: widget)
         }
 
@@ -77,11 +78,11 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     func tappedSessionWidget(sender: UITapGestureRecognizer) {
         let sessionView = sender.view as! SessionWidget
-        let triageString = "\(sessionView.typeOfSession), \(sessionView.time.text!), \(sessionView.inhale)"
+        let triageString = ""
 //        if let tag = sender.view?.tag {
 //            sendInputToTriage(input: triageString, tag: tag)
 //        }
-        sendInputToTriage(input: triageString, tag: sessionView.tagName)
+//        sendInputToTriage(input: triageString, tag: sessionView.tagName)
     }
 
     func tapAction(sender: ChatButton) {
