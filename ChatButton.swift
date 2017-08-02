@@ -30,8 +30,8 @@ class ChatButton: UIButton {
 //        gradient.endPoint = CGPoint(x: 1, y: 1)
 //        self.layer.insertSublayer(gradient, at: 0)
 
-        self.layer.borderColor = appColours.getMainAppColour().cgColor
-        self.layer.borderWidth = 1
+//        self.layer.borderColor = appColours.getMainAppColour().cgColor
+//        self.layer.borderWidth = 1
         self.backgroundColor = appColours.getMainAppColour() //UIColor.white
         self.layer.cornerRadius = 18
         self.setTitleColor(UIColor.white, for: .normal)

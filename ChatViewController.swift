@@ -18,7 +18,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     var scrollViewContentHeight: CGFloat = 0
     
     var activeButtons: [ChatButton] = [] // this is for disabling buttons once no longer in user
-    var currentWidget = allWidgets.askName //listOfWidgets.askChangeDepth  //: Widget? = nil
+    var currentWidget = allWidgets.allAppsWidgets.askName   //.askName //listOfWidgets.askChangeDepth  //: Widget? = nil
     var initialHHS: HHSNames = .onboarding
     
     override func viewDidLoad() {
