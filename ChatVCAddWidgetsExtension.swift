@@ -35,7 +35,9 @@ extension ChatViewController {
             for module in modules {
                 print(module)
                 
-                addSessionWidgetModuleToScrollView(title: module.title, image: module.image, text: "", time: "\(module.length)m", numberOfDots: module.inhale, widget: widget)
+                addModuleToScrollView(module: module, widget: widget)
+//                addSessionWidgetModuleToScrollView(title: module.title, image: module.image, text: "", time: "\(module.length)h", length: module.length, widget: widget)
+                //(title: module.title, image: module.image, text: "", time: "\(module.length)m", widget: widget)
             }
             
         } else if widget.answerFormat == .chooseDaysOfWeek {
@@ -68,16 +70,24 @@ extension ChatViewController {
         //        scrollViewContentHeight += module.frame.height + 10
     }
     
-    func addSessionWidgetModuleToScrollView(title: String, image: UIImage, text: String, time: String, numberOfDots: Int, widget: Widget) {
-        print("add session widget")
-        let module = createSessionWidget(screenWidth: self.view.frame.width, title: title, image: image, text: text, time: time, numberOfDots: numberOfDots, tag: widget.tag)
-        //        module.tag = getValueFor(widgetTagName: widget.tagName)
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedSessionWidget(sender:)))
+//    func addSessionWidgetModuleToScrollView(title: String, image: UIImage, text: String, time: String, length: Int, widget: Widget) {
+//        print("add session widget")
+//        let module = createSessionWidget(screenWidth: self.view.frame.width, title: title, image: image, text: text, time: time, length: length, tag: widget.tag)
+//        //        module.tag = getValueFor(widgetTagName: widget.tagName)
+//        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedWidget(sender:)))
+//        module.addGestureRecognizer(tap)
+//        chatView.scrollView.addSubview(module)
+//        arrangeHelperWidgets(widget: module)
+//        scrollViewContentHeight += module.frame.height + 10
+//        
+//    }
+    func addModuleToScrollView(module: Modules, widget: Widget) {
+        let module = createModuleForWidget(module: module, widget: widget, screenWidth: self.view.frame.width)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tappedWidget(sender:)))
         module.addGestureRecognizer(tap)
         chatView.scrollView.addSubview(module)
         arrangeHelperWidgets(widget: module)
         scrollViewContentHeight += module.frame.height + 10
-        
     }
     
     func addChatTextToScrollView(text: String) {

@@ -66,23 +66,34 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     // MARK INPUT
     
     
-    func sendInputToTriage(input: String, tag: WidgetTagNames) {
+    func sendInputToTriage(input: String, viewInput: UIView?, tag: WidgetTagNames) {
         print(scrollViewContentHeight)
         var activeWidgetTapped = false
         if currentWidget.tag == tag { //converTagNumberToName(tagNumber: tag) {
             activeWidgetTapped = true
         }
-        let result = triageUserInput(input: input, tag: tag, activeWidgetTapped: activeWidgetTapped)
+        let result = triageUserInput(input: input, viewInput: viewInput, tag: tag, activeWidgetTapped: activeWidgetTapped)
         dealWithTriage(result: (result.widget, result.vc))
     }
     
-    func tappedSessionWidget(sender: UITapGestureRecognizer) {
-        let sessionView = sender.view as! SessionWidget
-        let triageString = ""
+    func tappedWidget(sender: UITapGestureRecognizer) {
+                let sessionView = sender.view as! SessionWidget
+
+        sendInputToTriage(input: "", viewInput: sender.view, tag: sessionView.tagName)
+// if this doesn't work then create a subclass of UIView with a tag property than use that to subclass modules
+        
+        
+        
+//        let sessionView = sender.view as! SessionWidget
+//        if let title = sessionView.title.text {
+//        let triageString = "\(title) \(sessionView.length)"
+//            sendInputToTriage(input: triageString, viewInput: sender.view, tag: sessionView.tagName)
+//
+//        }
+//        print("Triage String \(triageString)")
 //        if let tag = sender.view?.tag {
 //            sendInputToTriage(input: triageString, tag: tag)
 //        }
-//        sendInputToTriage(input: triageString, tag: sessionView.tagName)
     }
 
     func tapAction(sender: ChatButton) {
@@ -94,9 +105,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         
         for button in activeButtons {
             if button.tag == sender.tag {
-                button.backgroundColor = UIColor.white
-                button.layer.borderColor = appColours.getMainAppColour().cgColor
-                button.setTitleColor(UIColor.black, for: .normal)
+                button.backgroundColor = UIColor.lightGray
+               // button.layer.borderColor = appColours.getMainAppColour().cgColor
+                button.setTitleColor(UIColor.darkGray, for: .normal)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
             }
         }
@@ -110,7 +121,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
         }
         
         if let title = sender.titleLabel?.text {
-            sendInputToTriage(input: title, tag: sender.buttonTag)
+            sendInputToTriage(input: title, viewInput: nil, tag: sender.buttonTag)
         }
     }
     
@@ -122,7 +133,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             chatView.scrollView.addSubview(bubble)
             arrangeChatBubble(bubble: bubble, isUser: true)
             textField.text = ""
-            sendInputToTriage(input: textFieldText, tag: currentWidget.tag) //getValueFor(widgetTagName: currentWidget.tagName))
+            sendInputToTriage(input: textFieldText, viewInput: nil, tag: currentWidget.tag) //getValueFor(widgetTagName: currentWidget.tagName))
         }
         return true
     }
