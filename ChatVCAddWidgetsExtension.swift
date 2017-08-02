@@ -12,17 +12,29 @@ import UIKit
 extension ChatViewController {
     func updateUIFor(widget: Widget) {
         
+        var widgetText = ""
+        if widget.multipleTextOptions == false {
+             widgetText = widget.defaultText //getTextFor(widgetTag: widget.tag)
+        } else {
+            widgetText = getTextFor(widgetTag: widget.tag)
+        }
         
-        let widgetText = getTextFor(widgetTag: widget.tag)
         addChatTextToScrollView(text: widgetText)
         print(widget.answerFormat)
         
         if widget.answerFormat == .presentedButtons {
             
+            var buttons: [String] = []
+            if let buttonTitles = widget.defaultButtonTitles {
+                if widget.multipleButtonTitleOptions {
+                    buttons = getButtonTitlesFor(widgetTag: widget.tag)
+
+                } else {
+                    buttons = buttonTitles
+                }
+            }
             
-            let buttonTitles = getButtonTitlesFor(widgetTag: widget.tag)
-            
-            for button in buttonTitles {
+            for button in buttons {
                 
                 addChatButtonToScrollView(buttonTitle: button, widget: widget)
                 

@@ -34,6 +34,10 @@ struct Widget {
     var tag: WidgetTagNames
     var answerFormat: AnswerFormats
     var hhBarText: String
+    var defaultText: String
+    var multipleTextOptions: Bool
+    var defaultButtonTitles: [String]?
+    var multipleButtonTitleOptions: Bool
 }
 
 
