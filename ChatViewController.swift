@@ -148,7 +148,8 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
             
             if widget.tag != currentWidget.tag {
                 updateUIFor(widget: widget)
-                chatView.scrollView.contentOffset = CGPoint(x: 0, y: maxYOfLastWidget - chatView.scrollView.frame.height  + 45)
+                // MARK Need to do some testing here. I don't think I need the below line.
+//                chatView.scrollView.contentOffset = CGPoint(x: 0, y: maxYOfLastWidget - chatView.scrollView.frame.height  + 45)
             }
             currentWidget = widget
             }

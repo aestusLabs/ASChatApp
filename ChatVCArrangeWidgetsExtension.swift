@@ -38,15 +38,17 @@ func arrangeDaysOfWeekButtons(widgets: [UIView]) {
 
 func arrangeHelperWidgets(widget: UIView) {
     chatView.scrollView.contentSize = CGSize(width: self.view.frame.width, height: scrollViewContentHeight)
-    
+    print("Hit arrangeHelperWidgets")
+    print(scrollViewContentHeight)
     widget.frame = CGRect(x: 0, y: maxYOfLastWidget + 10, width: widget.frame.width, height: widget.frame.height)
+    print(widget.frame.maxY)
     maxYOfLastWidget += widget.frame.height + 10
     widget.center.x = self.view.center.x
     
     if maxYOfLastWidget > chatView.scrollView.frame.height - 35 {
         //            scrollView.contentOffset = CGPoint(x: 0, y: maxYOfLastWidget - scrollView.frame.height + widget.frame.height + 5 )
         chatView.scrollView.contentSize = CGSize(width: self.view.frame.width, height: maxYOfLastWidget + 50)
-        
+        print("Hit maxYofLastWidget > than scroll view height")
         chatView.scrollView.contentOffset = CGPoint(x: 0, y: maxYOfLastWidget - chatView.scrollView.frame.height + 10)
     }
 }
