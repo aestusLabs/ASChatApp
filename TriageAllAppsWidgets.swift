@@ -11,7 +11,7 @@ func checkAllAppCases(input: String, tag: WidgetTagNames, activeWidgetTapped: Bo
     switch tag {
     case .askName:
         ASUser.name = input
-        return ([allWidgets.askFamiliarWithBreathingExercises], nil)
+        return (getHHS.onboarding(), nil)
         
     // MARK Notificatioins
     case .askAddDailyNotification:
