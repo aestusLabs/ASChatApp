@@ -109,6 +109,7 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
                // button.layer.borderColor = appColours.getMainAppColour().cgColor
                 button.setTitleColor(UIColor.darkGray, for: .normal)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightBold)
+                activeButtons = []
             }
         }
        
