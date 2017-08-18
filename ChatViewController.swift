@@ -46,6 +46,9 @@ class ChatViewController: UIViewController, UITextFieldDelegate {
     
     func displayOpeningMessages(name: HHSNames) {
         let widgets = chatManager.getCurrentHHSWidgets()
+        print(currentSession.arrayOfFlashCards)
+        
+        currentWidget = widgets[0]
         for widget in widgets {
             print(widget.tag)
         updateUIFor(widget: widget)
